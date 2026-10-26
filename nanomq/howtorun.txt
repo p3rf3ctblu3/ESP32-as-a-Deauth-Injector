@@ -1,0 +1,18 @@
+run in this folder with nanomq start --conf 
+
+ 
+create mqsub_sn1ff3r alias to make subsrcibing easy
+
+alias mqsub='mosquitto_sub -h <your_ip -p 8883 \
+  --cafile ~/Documents/PlatformIO/Projects/nanomq/etc/ca.crt \
+  -v -t sn1ff3r/m4c'
+  
+do source ~/.bashsrc
+  
+then subscribe like this
+
+mqsub 
+
+create custom command 1nj3ct /usr/local/bin/1nj3ct with script in the same folder
+don't forget to chmod +x
+
