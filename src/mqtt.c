@@ -3,8 +3,6 @@
 */
 
 #include <stdint.h>
-#include "freertos/event_groups.h"
-
 #include <string.h>
 
 #include "mqtt.h"
@@ -13,8 +11,10 @@
 #include "esp_event.h"
 #include "esp_log.h"
 
-#include "cert.h"
+#include "freertos/event_groups.h"
+
 #include "events.h"
+#include "cert.h"
 #include "credentials.h"
 
 // set URI to params n a config file somehere along with the ssid/password, .gitignore 

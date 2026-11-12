@@ -1,10 +1,11 @@
 #pragma once
 
-#include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "freertos/event_groups.h"
+#include "esp_event.h"
+
 #include "events.h"
 
 #define ASSIGNED_IP_BIT      BIT0
