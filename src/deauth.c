@@ -1,3 +1,19 @@
+/*
+ * deauth.c
+ * ------------------------------------------------------------------
+ * Implements raw 802.11 deauth frame construction and transmission.
+ *
+ *  - send_deauth_frame() : manually builds a 26-byte 802.11
+ *                          management-frame deauth packet (frame
+ *                          control, addr1=client/RA, addr2=addr3=AP
+ *                          BSSID/TA, reason code 0) and transmits it
+ *                          with esp_wifi_80211_tx() on WIFI_IF_AP.
+ *  - DEAUTHENTICATE()    : the entry point called from main.c after
+ *                          each loop's inject batch has been
+ *                          processed; walks inject_array_count
+ *                          targets and deauths each pair in turn.
+ */
+
 #include "esp_wifi.h"
 #include "esp_log.h"
 #include "esp_system.h"

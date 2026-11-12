@@ -1,3 +1,23 @@
+/*
+ * events.c
+ * ------------------------------------------------------------------
+ * Implements time sync and the Wi-Fi/IP event callbacks that drive
+ * the state transitions in main.c's main loop.
+ *
+ *  - sync_time()          : runs SNTP against pool.ntp.org /
+ *                            time.nist.gov so the device has a valid
+ *                            clock for TLS certificate checks before
+ *                            the MQTT/TLS handshake. Not used for
+ *                            anything time-critical otherwise.
+ *  - wifi_event_handler() : on STA disconnect, reconnects only if
+ *                            allow_connection is true (i.e. we're in
+ *                            the connect/publish stage, not actively
+ *                            sniffing).
+ *  - ip_event_handler()   : on receiving an IP, triggers the one-time
+ *                            SNTP sync and sets ASSIGNED_IP_BIT so
+ *                            main.c can proceed to start MQTT.
+ */
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"

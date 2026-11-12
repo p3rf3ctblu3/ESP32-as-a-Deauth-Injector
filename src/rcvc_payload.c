@@ -1,3 +1,23 @@
+/*
+ * rcvd_payload.c
+ * ------------------------------------------------------------------
+ * Parses MQTT inject commands received from Node-RED and turns them
+ * into validated mac_pair_t entries ready for deauthentication.
+ *
+ *  - process_payload()    : parses one JSON payload {id, src, dst},
+ *                            drops duplicates/out-of-order messages
+ *                            using last_processed_id, converts the
+ *                            "xx:xx:xx:xx:xx:xx" strings to raw MAC
+ *                            bytes, and appends the result to
+ *                            inject_array. Always frees the payload
+ *                            string it's given, regardless of
+ *                            success or failure.
+ *  - print_inject_array() : logs the current contents of
+ *                            inject_array for debugging, guarded by
+ *                            inject_sem so it doesn't race with
+ *                            concurrent writes from the MQTT task.
+ */
+
 #include "freertos/FreeRTOS.h"
 #include "esp_log.h"
 

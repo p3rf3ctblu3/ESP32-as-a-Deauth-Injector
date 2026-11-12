@@ -1,3 +1,26 @@
+/*
+ * events.h
+ * ------------------------------------------------------------------
+ * Declares the shared synchronization state used to coordinate the
+ * sniff -> connect -> publish -> inject state machine in main.c:
+ *
+ *  - s_evt            : event group whose bits signal when each
+ *                        stage completes (IP assigned, MAC buffer
+ *                        full, MQTT connected/subscribed/published).
+ *  - inject_queue      : queue of raw JSON strings waiting to be
+ *                         parsed by process_payload().
+ *  - inject_sem        : mutex protecting inject_array from
+ *                         concurrent access.
+ *  - allow_connection   : flag toggled between sniffer mode
+ *                          (promiscuous, Wi-Fi disconnected) and
+ *                          station mode (Wi-Fi connected to AP).
+ *  - sntp_initialized  : tracks whether time has been synced yet,
+ *                        so it's only attempted once per boot.
+ *
+ * Also declares the Wi-Fi and IP event handlers implemented in
+ * events.c.
+ */
+
 #pragma once
 
 #include "freertos/FreeRTOS.h"

@@ -1,3 +1,21 @@
+/*
+ * rcvd_payload.h
+ * ------------------------------------------------------------------
+ * Defines the shared data structures used to store and inject MAC
+ * address pairs captured by the sniffer, plus the target array that
+ * Node-RED commands populate for the deauth stage.
+ *
+ *  - mac_pair_t   : a single {source_mac, dest_mac} pair, used both
+ *                    for sniffed packets and injection targets.
+ *  - inject_t     : wraps a mac_pair_t with Node-RED's message ID,
+ *                    used for de-duplicating incoming inject commands.
+ *  - inject_array : fixed-size buffer (MAX_TARGETS) of validated
+ *                    targets, filled by process_payload() and
+ *                    consumed by DEAUTHENTICATE() in deauth.c.
+ *
+ * Declares the functions implemented in rcvd_payload.c (see below).
+ */
+
 #pragma once
 
 #include <stdint.h>

@@ -1,3 +1,19 @@
+/*
+ * mqtt.h
+ * ------------------------------------------------------------------
+ * Public interface for the MQTT/TLS connection to the NanoMQ broker.
+ *
+ *  - client             : handle for the single global MQTT client
+ *                          instance, shared with main.c.
+ *  - mqtt_init()         : configures and creates the client (TLS
+ *                          cert, broker URI, client ID) but does not
+ *                          start it — main.c calls
+ *                          esp_mqtt_client_start() once Wi-Fi/IP is
+ *                          up.
+ *  - mqtt_event_handler() : registered as the client's event
+ *                           callback; implemented in mqtt.c.
+ */
+
 #pragma once 
 
 #include <stdint.h>

@@ -1,5 +1,24 @@
-/* 
-    adapted from https://github.com/espressif/esp-mqtt/blob/master/examples/ssl/main/app_main.c
+/*
+ * mqtt.c
+ * ------------------------------------------------------------------
+ * Sets up the MQTTS client and handles its connection lifecycle and
+ * incoming messages.
+ *
+ *  - mqtt_init()         : builds the client config (broker URI,
+ *                          embedded CA cert from cert.h, client ID,
+ *                          keepalive) and registers
+ *                          mqtt_event_handler for all client events.
+ *  - mqtt_event_handler() : reacts to connect (subscribes to the
+ *                           inject topic), subscribe/publish acks
+ *                           (sets the matching event-group bits so
+ *                           main.c can unblock), and incoming
+ *                           MQTT_EVENT_DATA on the inject topic
+ *                           (copies the payload and pushes it onto
+ *                           inject_queue for rcvd_payload.c to
+ *                           parse). Also logs TLS/connection errors
+ *                           on MQTT_EVENT_ERROR.
+ *
+ *  adapted from https://github.com/espressif/esp-mqtt/blob/master/examples/ssl/main/app_main.c
 */
 
 #include <stdint.h>
