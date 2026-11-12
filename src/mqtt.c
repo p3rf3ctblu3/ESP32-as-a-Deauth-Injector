@@ -2,21 +2,19 @@
     adapted from https://github.com/espressif/esp-mqtt/blob/master/examples/ssl/main/app_main.c
 */
 
-#include <stdio.h>
 #include <stdint.h>
-#include <stddef.h>
+#include "freertos/event_groups.h"
+
 #include <string.h>
-#include "esp_system.h"
-#include <inttypes.h>
-#include "esp_event.h"
-#include "esp_netif.h"
-#include "esp_log.h"
+
 #include "mqtt.h"
 #include "mqtt_client.h"
-#include "esp_crt_bundle.h"
+
+#include "esp_event.h"
+#include "esp_log.h"
+
 #include "cert.h"
 #include "events.h"
-#include "freertos/event_groups.h"
 #include "credentials.h"
 
 // set URI to params n a config file somehere along with the ssid/password, .gitignore 
